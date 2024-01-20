@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ShotLogApp: App {
@@ -13,5 +14,6 @@ struct ShotLogApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Shot.self)
     }
 }
