@@ -10,16 +10,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path) {
             ShotListingView(sort: sortOrder, searchString: searchText)
-                .navigationTitle("ShotLog")
+                .navigationTitle(AppConstants.APP_TITLE)
                 .navigationDestination(for: Shot.self, destination: EditShotsView.init)
                 .searchable(text: $searchText)
                 .toolbar {
-                    Button("Add Shot", systemImage: "plus", action: addShot)
+                    Button(AppConstants.ADD_SHOT, systemImage: "plus", action: addShot)
                     
-                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                        Picker("Sort", selection: $sortOrder) {
-                            Text("Datum").tag(SortDescriptor(\Shot.date, order: .reverse))
-                            Text("Ringe").tag(SortDescriptor(\Shot.allShots, order: .reverse))
+                    Menu(AppConstants.SORT_BTN, systemImage: "arrow.up.arrow.down") {
+                        Picker(AppConstants.SORT_BTN, selection: $sortOrder) {
+                            Text(AppConstants.SORT_DATE).tag(SortDescriptor(\Shot.date, order: .reverse))
+                            Text(AppConstants.SORT_RINGS).tag(SortDescriptor(\Shot.allShots, order: .reverse))
                         }
                         .pickerStyle(.inline)
                     }

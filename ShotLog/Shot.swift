@@ -22,7 +22,7 @@ class Shot {
     
     var weapon: String
     
-    init(date: Date = .now, dest: String = "Hader", weapon: String = "Luftgewehr", serieTest: Int = 0, serieOne: Int = 0, serieTwo: Int = 0, serieThree: Int = 0, serieFour: Int = 0) {
+    init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serieTest: Int = 0, serieOne: Int = 0, serieTwo: Int = 0, serieThree: Int = 0, serieFour: Int = 0) {
         self.date = date
         self.dest = dest
         self.serieTest = serieTest
@@ -31,6 +31,6 @@ class Shot {
         self.serieThree = serieThree
         self.serieFour = serieFour
         self.weapon = weapon
-        self.allShots = serieOne + serieTwo + serieThree + serieFour
+        self.allShots = 0
     }
 }

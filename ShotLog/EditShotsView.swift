@@ -13,48 +13,44 @@ struct EditShotsView: View {
     
     var body: some View {
         Form {
-            Section("Allgemeines") {
-                TextField("Ort", text: $shot.dest)
-                DatePicker("Datum", selection: $shot.date)
+            Section(AppConstants.SECTION_GENERAL) {
+                TextField(AppConstants.INPUT_LOCATION, text: $shot.dest)
+                DatePicker(AppConstants.INPUT_DATE, selection: $shot.date)
             }
             
-            Section(header: Text("Schüsse")) {
+            Section(header: Text(AppConstants.SECTION_SHOTS)) {
                 HStack(spacing: 10) {
-                    Text("Probeschüsse")
+                    Text(AppConstants.SHOT_TEST)
                     TextField("", value: $shot.serieTest, formatter: NumberFormatter())
                 }
                 HStack(spacing: 10) {
-                    Text("Serie 1\t")
+                    Text(AppConstants.SHOT_ONE)
                     TextField("", value: $shot.serieOne, formatter: NumberFormatter())
                 }
                 HStack(spacing: 10) {
-                    Text("Serie 2\t")
+                    Text(AppConstants.SHOT_TWO)
                     TextField("", value: $shot.serieTwo, formatter: NumberFormatter())
                 }
                 HStack(spacing: 10) {
-                    Text("Serie 3\t")
+                    Text(AppConstants.SHOT_THREE)
                     TextField("", value: $shot.serieThree, formatter: NumberFormatter())
                 }
                 HStack(spacing: 10) {
-                    Text("Serie 4\t")
+                    Text(AppConstants.SHOT_THREE)
                     TextField("", value: $shot.serieFour, formatter: NumberFormatter())
-                }
-                HStack(spacing: 10) {
-                    Text("Gesamt\t")
-                    TextField("", value: $shot.allShots, formatter: NumberFormatter())
                 }
             }
             
-            Section("Waffenart") {
-                Picker("Waffenart", selection: $shot.weapon) {
-                    Text("Luftgewehr").tag("Luftgewehr")
-                    Text("Luftpistole").tag("Luftpistole")
+            Section(AppConstants.WEAPON_TYPE) {
+                Picker(AppConstants.WEAPON_TYPE, selection: $shot.weapon) {
+                    Text(AppConstants.AIR_RIFLE).tag(AppConstants.AIR_RIFLE)
+                    Text(AppConstants.AIR_PISTOL).tag(AppConstants.AIR_PISTOL)
                 }
                 .pickerStyle(.segmented)
             }
 
         }
-        .navigationTitle("Edit Shot")
+        .navigationTitle(AppConstants.EDIT_SHOTS)
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
             calcAllShots(pShot: shot)
