@@ -10,6 +10,8 @@
 		A904400A2B5C2FEA0093AE3A /* EditShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90440092B5C2FEA0093AE3A /* EditShotsView.swift */; };
 		A904400C2B5C67DF0093AE3A /* ShotListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A904400B2B5C67DF0093AE3A /* ShotListingView.swift */; };
 		A904400E2B5D14940093AE3A /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A904400D2B5D14940093AE3A /* AppConstants.swift */; };
+		A90440102B5D1F1E0093AE3A /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A904400F2B5D1F1E0093AE3A /* OverviewView.swift */; };
+		A90440122B5D221D0093AE3A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90440112B5D221D0093AE3A /* StatsView.swift */; };
 		A9818E042B5BF175007BA5CB /* ShotLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818E032B5BF175007BA5CB /* ShotLogApp.swift */; };
 		A9818E062B5BF175007BA5CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818E052B5BF175007BA5CB /* ContentView.swift */; };
 		A9818E082B5BF177007BA5CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9818E072B5BF177007BA5CB /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		A90440092B5C2FEA0093AE3A /* EditShotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShotsView.swift; sourceTree = "<group>"; };
 		A904400B2B5C67DF0093AE3A /* ShotListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotListingView.swift; sourceTree = "<group>"; };
 		A904400D2B5D14940093AE3A /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		A904400F2B5D1F1E0093AE3A /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		A90440112B5D221D0093AE3A /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		A9818E002B5BF175007BA5CB /* ShotLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShotLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9818E032B5BF175007BA5CB /* ShotLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotLogApp.swift; sourceTree = "<group>"; };
 		A9818E052B5BF175007BA5CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +44,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A90440132B5D2CB80093AE3A /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				A904400F2B5D1F1E0093AE3A /* OverviewView.swift */,
+				A904400B2B5C67DF0093AE3A /* ShotListingView.swift */,
+				A90440092B5C2FEA0093AE3A /* EditShotsView.swift */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		A90440142B5D2CDF0093AE3A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A9818E112B5BF21A007BA5CB /* Shot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A9818DF72B5BF175007BA5CB = {
 			isa = PBXGroup;
 			children = (
@@ -59,14 +81,14 @@
 		A9818E022B5BF175007BA5CB /* ShotLog */ = {
 			isa = PBXGroup;
 			children = (
-				A904400B2B5C67DF0093AE3A /* ShotListingView.swift */,
-				A90440092B5C2FEA0093AE3A /* EditShotsView.swift */,
+				A90440142B5D2CDF0093AE3A /* Models */,
+				A90440132B5D2CB80093AE3A /* Overview */,
 				A9818E032B5BF175007BA5CB /* ShotLogApp.swift */,
 				A9818E052B5BF175007BA5CB /* ContentView.swift */,
-				A9818E112B5BF21A007BA5CB /* Shot.swift */,
 				A9818E072B5BF177007BA5CB /* Assets.xcassets */,
 				A9818E092B5BF177007BA5CB /* Preview Content */,
 				A904400D2B5D14940093AE3A /* AppConstants.swift */,
+				A90440112B5D221D0093AE3A /* StatsView.swift */,
 			);
 			path = ShotLog;
 			sourceTree = "<group>";
@@ -153,8 +175,10 @@
 				A904400E2B5D14940093AE3A /* AppConstants.swift in Sources */,
 				A9818E062B5BF175007BA5CB /* ContentView.swift in Sources */,
 				A9818E122B5BF21A007BA5CB /* Shot.swift in Sources */,
+				A90440122B5D221D0093AE3A /* StatsView.swift in Sources */,
 				A9818E042B5BF175007BA5CB /* ShotLogApp.swift in Sources */,
 				A904400C2B5C67DF0093AE3A /* ShotListingView.swift in Sources */,
+				A90440102B5D1F1E0093AE3A /* OverviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
