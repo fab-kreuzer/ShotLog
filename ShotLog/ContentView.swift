@@ -12,7 +12,7 @@ struct ContentView: View {
                     Image(systemName: "folder")
                     Text(AppConstants.TAB_OVERVIEW)
                 }
-            StatsView()
+            StatsOverviewView()
                 .tabItem {
                     Image(systemName: "text.aligncenter")
                     Text(AppConstants.TAB_STATS)

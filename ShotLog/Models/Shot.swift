@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Shot {
+class Shot: Hashable {
     var date: Date
     var dest: String
     
@@ -22,6 +22,8 @@ class Shot {
     
     var weapon: String
     
+    let identifier = UUID()
+    
     init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serieTest: Int = 0, serieOne: Int = 0, serieTwo: Int = 0, serieThree: Int = 0, serieFour: Int = 0) {
         self.date = date
         self.dest = dest
@@ -33,4 +35,6 @@ class Shot {
         self.weapon = weapon
         self.allShots = 0
     }
+    
+    func hash(into hasher: inout Hasher) { hasher.combine(self.identifier) }
 }
