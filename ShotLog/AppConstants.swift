@@ -31,6 +31,8 @@ struct AppConstants {
     static let SHOT_ALL = "Gesamt"
     //Statistik
     static let SECTION_STATS_SHOT = "Anzahl Schüsse pro Monat"
+    static let SECTION_STATS_SHOT_TIMES = "Schießabende"
+    static let SECTION_STATS_WEAPON = "Aufteilung Waffenart"
     //Tabs
     static let TAB_OVERVIEW = "Übersicht"
     static let TAB_STATS = "Statistik"

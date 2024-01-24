@@ -20,10 +20,23 @@ struct StatsView: View {
                     // Display the statistic
                     ForEach(Array(shotsStatistic().keys.sorted()), id: \.self) { date in
                         if let count = shotsStatistic()[date] {
-                            Text("\(date): \(count) shots")
+                            Text("\(date): \(count)" + AppConstants.SECTION_STATS_SHOT_TIMES)
                         }
                     }
                 }
+                Chart {
+                    ForEach(Array(shotsStatistic().keys.sorted()), id: \.self) { date in
+                        if let count = shotsStatistic()[date] {
+                            BarMark(
+                                x: .value("", date),
+                                y: .value("", count)
+                            )
+                        }
+                        
+                    }
+                }
+            }
+            Section(AppConstants.SECTION_STATS_WEAPON) {
             }
         }
     }
