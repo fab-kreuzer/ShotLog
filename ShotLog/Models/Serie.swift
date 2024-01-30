@@ -9,16 +9,16 @@ import SwiftData
 
 @Model
 class Serie {
-    var schüsse: [Schuss]
+    var shots: [Schuss]
     
-    init(schüsse: [Schuss] = [Schuss(), Schuss(), Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss()]) {
-        self.schüsse = schüsse
+    init(shots: [Schuss] = [Schuss(), Schuss(), Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss()]) {
+        self.shots = shots
     }
     
     func getAllShots() -> Double {
         var sum: Double = 0.0
         
-        for schuss in schüsse {
+        for schuss in shots {
             sum += schuss.ring
         }
         
@@ -26,6 +26,24 @@ class Serie {
     }
     
     func saveShots(totalRings: Double) {
+        var remainingValue = totalRings
         
+        shots.removeAll()
+        
+        // Subtract 10.9 from the input value until it becomes less than 10.9
+        while remainingValue >= 10.9 {
+            shots.append(Schuss(ring: 10.9))
+            remainingValue -= 10.9
+        }
+        
+        // If there is remaining value after subtracting multiples of 10.9, add it to the array
+        if remainingValue > 0 {
+            shots.append(Schuss(ring: remainingValue))
+        }
+        
+        // Fill the remaining array slots with empty Schusse if the count is less than 10
+        while shots.count < 10 {
+            shots.append(Schuss(ring: 0.0))
+        }
     }
 }

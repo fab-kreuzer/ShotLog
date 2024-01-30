@@ -49,17 +49,6 @@ struct EditSessionView: View {
         session.addSerie()
     }
     
-    func getSerienShotCount(serie: Serie) -> Double {
-        var allShotSerie: Double = 0.0
-            
-        for shot in serie.schüsse {
-            allShotSerie += shot.ring
-        }
-        
-        return allShotSerie
-    }
-
-        
 }
 #Preview {
     do {

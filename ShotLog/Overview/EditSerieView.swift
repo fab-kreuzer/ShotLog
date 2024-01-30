@@ -24,14 +24,24 @@ struct EditSerieView: View {
             }
             
             Section("Serien ändern") {
-                ForEach(Array(serie.schüsse.enumerated()), id: \.offset) { index, shot in
+                ForEach(Array(serie.shots.enumerated()), id: \.offset) { index, shot in
                     HStack {
                         Text("Schuss \(index + 1):")
-                        TextField("", value: self.$serie.schüsse[index].ring, formatter: NumberFormatter())
+                        TextField("", value: self.$serie.shots[index].ring, formatter: NumberFormatter.decimalFractionDigits(1))
                     }
                 }
             }
         }
+    }
+}
+
+extension NumberFormatter {
+    static func decimalFractionDigits(_ fractionDigits: Int) -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = fractionDigits
+        formatter.maximumFractionDigits = fractionDigits
+        return formatter
     }
 }
 
