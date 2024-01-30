@@ -9,20 +9,20 @@ import SwiftData
 import SwiftUI
 
 struct ShotListingView: View {
-    @Query(sort: [SortDescriptor(\Shot.date, order: .reverse), SortDescriptor(\Shot.allShots, order: .reverse)]) var shots: [Shot]
+    @Query(sort: [SortDescriptor(\Session.date, order: .reverse)]) var sessions: [Session]
     @Environment(\.modelContext) var modelContext
 
     var body: some View {
         List {
-            ForEach(shots, id: \.self) { shot in
-                NavigationLink(value: shot) {
+            ForEach(sessions, id: \.self) { session in
+                NavigationLink(value: session) {
                     VStack(alignment: .leading) {
-                        let formattedDate = shot.date.formatted(date: .long, time: .shortened)
-                        let ringsText = String(shot.allShots) + "R @ " + shot.dest
+                        let formattedDate = session.date.formatted(date: .long, time: .shortened)
+                        let ringsText = String(session.getAllShots()) + "R @ " + session.location
                         
                         Text(formattedDate).font(.headline)
                         Text(ringsText)
-                        Text(String(shot.weapon))
+                        Text(String(session.weapon))
                     }
                 }
             }
@@ -30,24 +30,24 @@ struct ShotListingView: View {
         }
     }
     
-    init(sort: SortDescriptor<Shot>, searchString: String) {
-        _shots = Query(filter: #Predicate {
+    init(sort: SortDescriptor<Session>, searchString: String) {
+        _sessions = Query(filter: #Predicate {
             if searchString.isEmpty {
                 return true
             } else {
-                return $0.dest.localizedStandardContains(searchString)
+                return $0.location.localizedStandardContains(searchString)
             }
         }, sort: [sort])
     }
     
     func deleteShots(_ indexSet: IndexSet) {
         for index in indexSet {
-            let shot = shots[index]
+            let shot = sessions[index]
             modelContext.delete(shot)
         }
     }
 }
 
 #Preview {
-    ShotListingView(sort: SortDescriptor(\Shot.date, order: .reverse), searchString: "")
+    ShotListingView(sort: SortDescriptor(\Session.date, order: .reverse), searchString: "")
 }

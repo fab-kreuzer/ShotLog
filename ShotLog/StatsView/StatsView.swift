@@ -11,7 +11,7 @@ import Charts
 
 struct StatsView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var shots: [Shot]
+    @Query var shots: [Session]
     
     var body: some View {
         Form {

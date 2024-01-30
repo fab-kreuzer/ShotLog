@@ -14,6 +14,6 @@ struct ShotLogApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Shot.self)
+        .modelContainer(for: Session.self)
     }
 }
