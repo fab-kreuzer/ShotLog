@@ -10,9 +10,11 @@ import SwiftData
 @Model
 class Serie {
     var shots: [Schuss]
+    var tenth: Bool
     
-    init(shots: [Schuss] = [Schuss(), Schuss(), Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss()]) {
+    init(shots: [Schuss] = [Schuss(), Schuss(), Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss(),Schuss()], tenth: Bool = false) {
         self.shots = shots
+        self.tenth = tenth
     }
     
     func getAllShots() -> Double {

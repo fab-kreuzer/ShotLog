@@ -21,12 +21,18 @@ struct EditSerieView: View {
                         serie.saveShots(totalRings: totalRings)
                     }
                 }
+                Toggle(isOn: $serie.tenth) {
+                    Text("Zehntelwertung")
+                }
+                .toggleStyle(.checkmark)
+
             }
             
             Section("Serien ändern") {
                 ForEach(Array(serie.shots.enumerated()), id: \.offset) { index, shot in
                     HStack {
                         Text("Schuss \(index + 1):")
+                        //TODO: Kommastelle an Zehntelwertung binden
                         TextField("", value: self.$serie.shots[index].ring, formatter: NumberFormatter.decimalFractionDigits(1))
                     }
                 }
