@@ -16,4 +16,13 @@ class Schuss {
         self.ring = ring
         self.teiler = teiler
     }
+    
+    func getFormattedValue(pTenth: Bool = false) -> String {
+        if pTenth {
+            return String(self.ring)
+        }
+        else {
+            return String(Int(self.ring))
+        }
+    }
 }

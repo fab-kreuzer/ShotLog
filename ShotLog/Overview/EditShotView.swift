@@ -10,20 +10,34 @@ import SwiftData
 
 struct EditShotView: View {
     @Bindable var shot: Schuss
+    @State var inputText: String = ""
+    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
+
+    init(shot: Schuss) {
+        self.shot = shot
+    }
     
     var body: some View {
+        
         Form {
             Section(AppConstants.SECTION_SHOTS) {
                 HStack{
                     Text("Ring:")
                     TextField("", text: Binding(
-                        get: { "\(shot.ring)" },
-                        set: {
-                            if let newValue = NumberFormatter().number(from: $0) {
-                                shot.ring = newValue.doubleValue
+                        get: {
+                            shot.getFormattedValue(pTenth: tenth)
+                        },
+                        set: {val in
+                            inputText = val
+                        }
+                    ), onEditingChanged: {isEditing in
+                        if !isEditing {
+                            // Handle when the user exits the TextField
+                            if let doubleValue = Double(inputText.replacingOccurrences(of: ",", with: ".")) {
+                                shot.ring = doubleValue // Update the stored value
                             }
                         }
-                    ))
+                    })
                     .keyboardType(.decimalPad)
                 }
                 HStack {

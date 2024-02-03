@@ -11,7 +11,8 @@ import SwiftData
 struct EditSerieView: View {
     @Bindable var serie: Serie
     @State var totalRings: Double = 0.0
-    
+    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
+
     var body: some View {
         Form {
             Section("Gesamt ändern") {
@@ -29,7 +30,7 @@ struct EditSerieView: View {
                         serie.saveShots(totalRings: totalRings)
                     }
                 }
-                Toggle(isOn: $serie.tenth) {
+                Toggle(isOn: $tenth) {
                     Text("Zehntelwertung")
                 }
                 .toggleStyle(.checkmark)
@@ -38,9 +39,9 @@ struct EditSerieView: View {
             
             Section("Serien ändern") {
                 ForEach(Array(serie.shots.enumerated()), id: \.offset) { index, shot in
-                    NavigationLink(destination: EditShotView(shot: shot)) {
+                    NavigationLink(destination: {EditShotView(shot: shot)}) {
                         HStack {
-                            Text("Schuss \(index + 1): \(shot.ring, specifier: "%.1f")")
+                            Text("Schuss \(index + 1): " + shot.getFormattedValue(pTenth: tenth))
                         }
                     }
                 }

@@ -35,5 +35,7 @@ struct AppConstants {
     //Tabs
     static let TAB_OVERVIEW = "Übersicht"
     static let TAB_STATS = "Statistik"
+    //Properties
+    static let PROP_TENTH = "prop_tenth"
 }
 
