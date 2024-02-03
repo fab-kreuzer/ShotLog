@@ -37,7 +37,7 @@ struct EditSessionView: View {
             }
 
         }
-        .navigationTitle(AppConstants.EDIT_SHOTS)
+        .navigationTitle(AppConstants.EDIT_SESSION)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Add Serie", action: addSerie)

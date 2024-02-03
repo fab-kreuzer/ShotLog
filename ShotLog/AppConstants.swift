@@ -18,6 +18,8 @@ struct AppConstants {
     static let WEAPON_TYPE = "Waffenart"
     static let AIR_RIFLE = "Luftgewehr"
     static let AIR_PISTOL = "Luftpistole"
+    static let EDIT_SESSION = "Schießtag ändern"
+    static let EDIT_SERIE = "Serie ändern"
     static let EDIT_SHOTS = "Schüsse ändern"
     static let SECTION_GENERAL = "Allgemeines"
     static let SECTION_SHOTS = "Serien"

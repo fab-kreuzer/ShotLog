@@ -38,6 +38,8 @@ struct EditSerieView: View {
                 }
             }
         }
+        .navigationTitle(AppConstants.EDIT_SERIE)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
