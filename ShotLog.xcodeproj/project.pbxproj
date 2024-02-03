@@ -15,6 +15,7 @@
 		A90440172B5D55A90093AE3A /* StatsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90440162B5D55A90093AE3A /* StatsOverviewView.swift */; };
 		A96F52AD2B67ED7F0070F65F /* EditSerieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F52AC2B67ED7F0070F65F /* EditSerieView.swift */; };
 		A96F52B22B6D468C0070F65F /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F52B12B6D468C0070F65F /* CheckBoxToggleStyle.swift */; };
+		A96F52B62B6E41510070F65F /* EditShotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F52B52B6E41510070F65F /* EditShotView.swift */; };
 		A9818E042B5BF175007BA5CB /* ShotLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818E032B5BF175007BA5CB /* ShotLogApp.swift */; };
 		A9818E062B5BF175007BA5CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9818E052B5BF175007BA5CB /* ContentView.swift */; };
 		A9818E082B5BF177007BA5CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9818E072B5BF177007BA5CB /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		A90440162B5D55A90093AE3A /* StatsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOverviewView.swift; sourceTree = "<group>"; };
 		A96F52AC2B67ED7F0070F65F /* EditSerieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSerieView.swift; sourceTree = "<group>"; };
 		A96F52B12B6D468C0070F65F /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
+		A96F52B52B6E41510070F65F /* EditShotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShotView.swift; sourceTree = "<group>"; };
 		A9818E002B5BF175007BA5CB /* ShotLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShotLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9818E032B5BF175007BA5CB /* ShotLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotLogApp.swift; sourceTree = "<group>"; };
 		A9818E052B5BF175007BA5CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				A904400B2B5C67DF0093AE3A /* ShotListingView.swift */,
 				A90440092B5C2FEA0093AE3A /* EditSessionView.swift */,
 				A96F52AC2B67ED7F0070F65F /* EditSerieView.swift */,
+				A96F52B52B6E41510070F65F /* EditShotView.swift */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				A96F52B22B6D468C0070F65F /* CheckBoxToggleStyle.swift in Sources */,
 				A90440172B5D55A90093AE3A /* StatsOverviewView.swift in Sources */,
 				A9818E042B5BF175007BA5CB /* ShotLogApp.swift in Sources */,
+				A96F52B62B6E41510070F65F /* EditShotView.swift in Sources */,
 				A904400C2B5C67DF0093AE3A /* ShotListingView.swift in Sources */,
 				A90440102B5D1F1E0093AE3A /* OverviewView.swift in Sources */,
 				A96F52AD2B67ED7F0070F65F /* EditSerieView.swift in Sources */,

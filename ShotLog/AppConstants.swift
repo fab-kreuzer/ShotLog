@@ -22,7 +22,8 @@ struct AppConstants {
     static let EDIT_SERIE = "Serie ändern"
     static let EDIT_SHOTS = "Schüsse ändern"
     static let SECTION_GENERAL = "Allgemeines"
-    static let SECTION_SHOTS = "Serien"
+    static let SECTION_SERIE = "Serien"
+    static let SECTION_SHOTS = "Schüsse"
     static let INPUT_LOCATION = "Ort"
     static let INPUT_DATE = "Datum"
     //Schüsse ändern

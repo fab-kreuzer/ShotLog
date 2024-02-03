@@ -16,7 +16,15 @@ struct EditSerieView: View {
         Form {
             Section("Gesamt ändern") {
                 HStack {
-                    TextField("Gesamt", value: $totalRings, formatter: NumberFormatter())
+                    TextField("", text: Binding(
+                        get: { "\(totalRings)" },
+                        set: {
+                            if let newValue = NumberFormatter().number(from: $0) {
+                                totalRings = newValue.doubleValue
+                            }
+                        }
+                    ))
+                    .keyboardType(.decimalPad) 
                     Button("Übernehmen") {
                         serie.saveShots(totalRings: totalRings)
                     }
@@ -30,10 +38,10 @@ struct EditSerieView: View {
             
             Section("Serien ändern") {
                 ForEach(Array(serie.shots.enumerated()), id: \.offset) { index, shot in
-                    HStack {
-                        Text("Schuss \(index + 1):")
-                        //TODO: Kommastelle an Zehntelwertung binden
-                        TextField("", value: self.$serie.shots[index].ring, formatter: NumberFormatter.decimalFractionDigits(1))
+                    NavigationLink(destination: EditShotView(shot: shot)) {
+                        HStack {
+                            Text("Schuss \(index + 1): \(shot.ring, specifier: "%.1f")")
+                        }
                     }
                 }
             }
@@ -42,46 +50,6 @@ struct EditSerieView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-extension NumberFormatter {
-    static func decimalFractionDigits(_ fractionDigits: Int) -> NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = fractionDigits
-        formatter.maximumFractionDigits = fractionDigits
-        return formatter
-    }
-}
-
-// Custom TextField for Double values
-struct DoubleTextField: View {
-    @Binding var value: Double
-    var formatter: NumberFormatter
-    
-    init(value: Binding<Double>, formatter: NumberFormatter) {
-        self._value = value
-        self.formatter = formatter
-        // Ensure that decimal values are retained
-        self.formatter.maximumFractionDigits = Int.max
-    }
-    
-    var body: some View {
-        TextField("", text: Binding(
-            get: {
-                // Format the double value using the provided formatter
-                return self.formatter.string(for: self.value) ?? ""
-            },
-            set: { newValue in
-                // Attempt to convert the string value back to a Double
-                if let newValue = self.formatter.number(from: newValue)?.doubleValue {
-                    self.value = newValue
-                }
-            }
-        ))
-        .keyboardType(.decimalPad)
-    }
-}
-
 
 #Preview {
     do {

@@ -18,10 +18,10 @@ struct ShotListingView: View {
                 NavigationLink(value: session) {
                     VStack(alignment: .leading) {
                         let formattedDate = session.date.formatted(date: .long, time: .shortened)
-                        let ringsText = String(session.getAllShots()) + "R @ " + session.location
                         
-                        Text(formattedDate).font(.headline)
-                        Text(ringsText)
+                        Text(formattedDate)
+                            .font(.headline)
+                        Text("\(session.getAllShots(), specifier: "%.1f")R @ \(session.location)")
                         Text(String(session.weapon))
                     }
                 }

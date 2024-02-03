@@ -18,12 +18,13 @@ struct EditSessionView: View {
                 DatePicker(AppConstants.INPUT_DATE, selection: $session.date)
             }
             
-            Section(AppConstants.SECTION_SHOTS) {
+            Section(AppConstants.SECTION_SERIE) {
                 
                 ForEach(Array(session.serien.enumerated()), id: \.offset) { index, serie in
                     NavigationLink(destination: EditSerieView(serie: serie)) {
                         HStack() {
-                            Text("Serie \(index + 1): " + NumberFormatter.localizedString(from: NSNumber(value: serie.getAllShots()), number: .decimal))                        }
+                            Text("Serie \(index + 1): \(serie.getAllShots(), specifier: "%.1f")")
+                        }
                     }
                 }
             }
