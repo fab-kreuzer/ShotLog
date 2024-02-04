@@ -30,11 +30,6 @@ struct EditSerieView: View {
                         serie.saveShots(totalRings: totalRings)
                     }
                 }
-                Toggle(isOn: $tenth) {
-                    Text("Zehntelwertung")
-                }
-                .toggleStyle(.checkmark)
-
             }
             
             Section("Serien ändern") {

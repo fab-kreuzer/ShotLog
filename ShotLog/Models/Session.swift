@@ -26,11 +26,14 @@ class Session: Hashable {
     
     func hash(into hasher: inout Hasher) { hasher.combine(self.identifier) }
     
-    func getAllShots() -> Double {
+    func getAllShots(pTenth: Bool = false) -> Double {
         var sum: Double = 0.0
         
         for serie in serien {
-            sum += serie.getAllShots()
+            if var val = Double(serie.getAllShots(pTenth: pTenth)) {
+                val = round(100 * val) / 100
+                sum += val
+            }
         }
         
         return sum

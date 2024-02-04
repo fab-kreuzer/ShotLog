@@ -6,6 +6,7 @@
 //
 
 import SwiftData
+import Foundation
 
 @Model
 class Serie {
@@ -15,14 +16,16 @@ class Serie {
         self.shots = shots
     }
     
-    func getAllShots() -> Double {
+    func getAllShots(pTenth: Bool = false) -> String {
         var sum: Double = 0.0
         
         for schuss in shots {
-            sum += schuss.ring
+            if var val = Double(schuss.getFormattedValue(pTenth: pTenth)) {
+                val = round(100 * val) / 100
+                sum += val
+            }
         }
-        
-        return sum
+        return String(sum)
     }
     
     func saveShots(totalRings: Double) {
