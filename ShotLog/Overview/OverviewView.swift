@@ -40,13 +40,7 @@ struct OverviewView: View {
     func addShot() {
         let session = Session()
         modelContext.insert(session)
-        modelContext.insert(session)
-        modelContext.insert(session)
-
-        /*
-        let shot = Session()
-        modelContext.insert(shot)
-        path = [shot]*/
+        path = [session]
     }
     
 }

@@ -20,7 +20,7 @@ struct EditSessionView: View {
                 Toggle(isOn: $tenth) {
                     Text("Zehntelwertung")
                 }
-                .toggleStyle(.checkmark)
+                //.toggleStyle(.checkmark)
             }
             
             Section(AppConstants.SECTION_SERIE) {
