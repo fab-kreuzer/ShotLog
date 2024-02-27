@@ -14,14 +14,16 @@ class Session: Hashable {
     var location: String
     var weapon: String
     var serien: [Serie]
+    var tenth: Bool
     
     let identifier = UUID()
     
-    init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serien: [Serie] = [Serie()]) {
+    init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serien: [Serie] = [Serie()], tenth: Bool = true) {
         self.date = date
         self.location = dest
         self.weapon = weapon
         self.serien = serien
+        self.tenth = tenth
     }
     
     func hash(into hasher: inout Hasher) { hasher.combine(self.identifier) }

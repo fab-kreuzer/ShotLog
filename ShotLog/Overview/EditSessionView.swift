@@ -10,14 +10,13 @@ import SwiftData
 
 struct EditSessionView: View {
     @Bindable var session: Session
-    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
 
     var body: some View {
         Form {
             Section(AppConstants.SECTION_GENERAL) {
                 TextField(AppConstants.INPUT_LOCATION, text: $session.location)
                 DatePicker(AppConstants.INPUT_DATE, selection: $session.date)
-                Toggle(isOn: $tenth) {
+                Toggle(isOn: $session.tenth) {
                     Text("Zehntelwertung")
                 }
                 //.toggleStyle(.checkmark)
@@ -26,9 +25,9 @@ struct EditSessionView: View {
             Section(AppConstants.SECTION_SERIE) {
                 
                 ForEach(Array(session.serien.enumerated()), id: \.offset) { index, serie in
-                    NavigationLink(destination: EditSerieView(serie: serie)) {
+                    NavigationLink(destination: EditSerieView(serie: serie, tenth: session.tenth)) {
                         HStack() {
-                            Text("Serie \(index + 1): \(serie.getAllShots(pTenth: tenth))")
+                            Text("Serie \(index + 1): \(serie.getAllShots(pTenth: session.tenth))")
                         }
                     }
                 }

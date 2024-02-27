@@ -10,8 +10,14 @@ import SwiftData
 
 struct EditSerieView: View {
     @Bindable var serie: Serie
-    @State var totalRings: Double = 0.0
-    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
+    @State var totalRings: Double
+    var tenth: Bool
+    
+    init(serie: Serie, tenth: Bool) {
+        self.tenth = tenth
+        self._totalRings = State(initialValue: 0.0)
+        self.serie = serie
+    }
 
     var body: some View {
         Form {
@@ -34,9 +40,9 @@ struct EditSerieView: View {
             
             Section("Serien ändern") {
                 ForEach(Array(serie.shots.enumerated()), id: \.offset) { index, shot in
-                    NavigationLink(destination: {EditShotView(shot: shot)}) {
+                    NavigationLink(destination: {EditShotView(shot: shot, tenth: self.tenth)}) {
                         HStack {
-                            Text("Schuss \(index + 1): " + shot.getFormattedValue(pTenth: tenth))
+                            Text("Schuss \(index + 1): " + shot.getFormattedValue(pTenth: self.tenth))
                         }
                     }
                 }
@@ -52,7 +58,7 @@ struct EditSerieView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Serie.self, configurations: config)
         let example = Serie()
-        return EditSerieView(serie: example)
+        return EditSerieView(serie: example, tenth: true)
     }catch {
         fatalError("Failed to create model container.")
 

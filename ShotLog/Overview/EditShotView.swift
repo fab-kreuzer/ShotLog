@@ -10,11 +10,12 @@ import SwiftData
 
 struct EditShotView: View {
     @Bindable var shot: Schuss
+    var tenth: Bool
     @State var inputText: String = ""
-    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
 
-    init(shot: Schuss) {
+    init(shot: Schuss, tenth: Bool) {
         self.shot = shot
+        self.tenth = tenth
     }
     
     var body: some View {
@@ -58,7 +59,7 @@ struct EditShotView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Schuss.self, configurations: config)
         let example = Schuss()
-        return EditShotView(shot: example)
+        return EditShotView(shot: example, tenth: true)
     }catch {
         fatalError("Failed to create model container.")
 

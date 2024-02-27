@@ -11,7 +11,6 @@ import SwiftUI
 struct ShotListingView: View {
     @Query(sort: [SortDescriptor(\Session.date, order: .reverse)]) var sessions: [Session]
     @Environment(\.modelContext) var modelContext
-    @AppStorage(AppConstants.PROP_TENTH) private var tenth: Bool = false
 
     var body: some View {
         List {
@@ -22,7 +21,7 @@ struct ShotListingView: View {
                         
                         Text(formattedDate)
                             .font(.headline)
-                        Text("\(session.getAllShots(pTenth: tenth))R @ \(session.location)")
+                        Text("\(session.getAllShots(pTenth: session.tenth))R @ \(session.location)")
                         Text(String(session.weapon))
                     }
                 }
