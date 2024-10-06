@@ -16,7 +16,7 @@ class Session: Hashable {
     var serien: [Serie]
     var tenth: Bool
     
-    let identifier = UUID()
+    var identifier = UUID()
     
     init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serien: [Serie] = [Serie()], tenth: Bool = true) {
         self.date = date
