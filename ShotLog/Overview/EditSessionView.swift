@@ -10,7 +10,9 @@ import SwiftData
 
 struct EditSessionView: View {
     @Bindable var session: Session
-
+    @State private var showingOverlay = false
+    @State private var inputValue: String = ""
+    
     var body: some View {
         Form {
             Section(AppConstants.SECTION_GENERAL) {
@@ -19,18 +21,18 @@ struct EditSessionView: View {
                 Toggle(isOn: $session.tenth) {
                     Text("Zehntelwertung")
                 }
-                //.toggleStyle(.checkmark)
             }
             
             Section(AppConstants.SECTION_SERIE) {
-                
-                ForEach(Array(session.serien.enumerated()), id: \.offset) { index, serie in
-                    NavigationLink(destination: EditSerieView(serie: serie, tenth: session.tenth)) {
-                        HStack() {
-                            Text("Serie \(index + 1): \(serie.getAllShots(pTenth: session.tenth))")
-                        }
+                // Break down ForEach loop into simpler parts
+                ForEach(0..<session.serien.count, id: \.self) { index in
+                    let serie = session.serien[index]
+                    HStack {
+                        Text("Serie \(index + 1): \(serie.getAllShots(pTenth: session.tenth))")
                     }
                 }
+                .onDelete(perform: deleteSerie)
+                .onMove(perform: moveShots) 
             }
             
             Section(AppConstants.WEAPON_TYPE) {
@@ -40,21 +42,74 @@ struct EditSessionView: View {
                 }
                 .pickerStyle(.segmented)
             }
-
+            
         }
         .navigationTitle(AppConstants.EDIT_SESSION)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            Button("Add Serie", action: addSerie)
+            Button("Serie hinzufügen") {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    showingOverlay = true // Dismiss the overlay
+                }            }
+        }
+        
+        // Custom bottom overlay
+        if showingOverlay {
+            BottomSheetView(isPresented: $showingOverlay) {
+                VStack(spacing: 20) {
+                    Text("Ringe eingeben")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
+                        .foregroundColor(.primary)
+                    
+                    TextField("100", text: $inputValue)
+                        .keyboardType(.decimalPad)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                    
+                    Button(action: {
+                        if let input = Double(inputValue) {
+                            session.addSerie(serie: Serie(ringe: input))
+                            inputValue = "" // Clear the input field
+                        }
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingOverlay = false // Dismiss the overlay
+                        }
+                    }) {
+                        Text("Übernehmen")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(Color.white)
+                            .background(Color.brown)
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                    }
+                    
+                    Button("Abbrechen") {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingOverlay = false // Dismiss the overlay
+                        }
+                    }
+                    .foregroundColor(.red)
+                    .padding(.bottom, 20)
+                }
+            }
         }
     }
     
-    
-    func addSerie() {
-        session.addSerie()
+    // Method to handle deletion of a series
+    func deleteSerie(offsets: IndexSet) {
+        session.serien.remove(atOffsets: offsets)
     }
-    
+    // Method to handle reordering of the series
+    func moveShots(from source: IndexSet, to destination: Int) {
+        session.serien.move(fromOffsets: source, toOffset: destination)
+    }
 }
+
 #Preview {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
