@@ -12,6 +12,7 @@ struct EditSessionView: View {
     @Bindable var session: Session
     @State private var showingOverlay = false
     @State private var inputValue: String = ""
+    @State private var selectedSerieIndex: Int?
     
     var body: some View {
         Form {
@@ -29,6 +30,15 @@ struct EditSessionView: View {
                     let serie = session.serien[index]
                     HStack {
                         Text("Serie \(index + 1): \(serie.getAllShots(pTenth: session.tenth))")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        // Show the overlay to edit the tapped series
+                        selectedSerieIndex = index
+                        inputValue = String(serie.ringe) // Load current value of the series
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingOverlay = true
+                        }
                     }
                 }
                 .onDelete(perform: deleteSerie)
@@ -49,8 +59,11 @@ struct EditSessionView: View {
         .toolbar {
             Button("Serie hinzufügen") {
                 withAnimation(.easeInOut(duration: 0.3)) {
-                    showingOverlay = true // Dismiss the overlay
-                }            }
+                    inputValue = "" // Clear the input field for new series
+                    selectedSerieIndex = nil // No series selected
+                    showingOverlay = true // Show overlay for adding
+                }
+            }
         }
         
         // Custom bottom overlay
@@ -72,7 +85,13 @@ struct EditSessionView: View {
                     
                     Button(action: {
                         if let input = Double(inputValue) {
-                            session.addSerie(serie: Serie(ringe: input))
+                            if let index = selectedSerieIndex {
+                                // Edit existing series
+                                session.serien[index].ringe = input
+                            } else {
+                                // Add new series
+                                session.addSerie(serie: Serie(ringe: input))
+                            }
                             inputValue = "" // Clear the input field
                         }
                         withAnimation(.easeInOut(duration: 0.3)) {
