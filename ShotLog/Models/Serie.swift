@@ -18,9 +18,9 @@ class Serie {
     
     func getAllShots(pTenth: Bool = false) -> String {
         if pTenth {
-            return String(Int(ringe))
-        } else {
             return String(ringe)
+        } else {
+            return String(Int(ringe))
         }
     }
 }
