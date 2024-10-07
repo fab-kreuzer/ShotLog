@@ -32,6 +32,7 @@ struct EditSessionView: View {
                     }
                 }
                 .onDelete(perform: deleteSerie)
+                .onMove(perform: moveShots) 
             }
             
             Section(AppConstants.WEAPON_TYPE) {
@@ -60,6 +61,7 @@ struct EditSessionView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.top, 20)
+                        .foregroundColor(.primary)
                     
                     TextField("100", text: $inputValue)
                         .keyboardType(.decimalPad)
@@ -80,8 +82,8 @@ struct EditSessionView: View {
                         Text("Übernehmen")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .foregroundColor(.white)
-                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .background(Color.brown)
                             .cornerRadius(10)
                             .padding(.horizontal)
                     }
@@ -101,6 +103,10 @@ struct EditSessionView: View {
     // Method to handle deletion of a series
     func deleteSerie(offsets: IndexSet) {
         session.serien.remove(atOffsets: offsets)
+    }
+    // Method to handle reordering of the series
+    func moveShots(from source: IndexSet, to destination: Int) {
+        session.serien.move(fromOffsets: source, toOffset: destination)
     }
 }
 

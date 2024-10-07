@@ -27,7 +27,7 @@ struct BottomSheetView<Content: View>: View {
             content
                 .frame(maxWidth: .infinity)
                 .frame(height: UIScreen.main.bounds.height / 2) // Adjust as needed
-                .background(Color.white)
+                .background(Color(.systemGray5))
                 .cornerRadius(20)
                 .shadow(radius: 10)
                 .offset(y: dragOffset.height > 0 ? dragOffset.height : 0) // Move with drag gesture
