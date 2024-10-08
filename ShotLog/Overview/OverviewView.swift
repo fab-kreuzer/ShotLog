@@ -15,6 +15,7 @@ struct OverviewView: View {
     @State private var path = [Session]()
     @State private var sortOrder = SortDescriptor(\Session.date, order: .reverse)
     @Environment(\.modelContext) var modelContext
+    @StateObject private var locationManager = LocationManager()
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -39,6 +40,7 @@ struct OverviewView: View {
     
     func addShot() {
         let session = Session()
+        session.location = locationManager.currentCity
         modelContext.insert(session)
         path = [session]
     }
