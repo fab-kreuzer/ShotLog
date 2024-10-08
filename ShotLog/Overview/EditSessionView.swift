@@ -84,7 +84,7 @@ struct EditSessionView: View {
                         .padding(.horizontal)
                     
                     Button(action: {
-                        if let input = Double(inputValue) {
+                        if let input = Double(inputValue.replacingOccurrences(of: ",", with: ".")   ) {
                             if let index = selectedSerieIndex {
                                 // Edit existing series
                                 session.serien[index].ringe = input
