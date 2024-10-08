@@ -16,7 +16,14 @@ class Serie {
         self.ringe = ringe
     }
     
-    func getAllShots(pTenth: Bool = false) -> String {
+    func getAllShots(pTenth: Bool = false) -> Double {
+        if pTenth {
+            return ringe
+        } else {
+            return Double(Int(ringe))
+        }
+    }
+    func getAllShotsFormatted(pTenth: Bool = false) -> String {
         if pTenth {
             return String(ringe)
         } else {

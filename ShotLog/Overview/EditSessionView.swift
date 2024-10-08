@@ -29,7 +29,7 @@ struct EditSessionView: View {
                 ForEach(0..<session.serien.count, id: \.self) { index in
                     let serie = session.serien[index]
                     HStack {
-                        Text("Serie \(index + 1): \(serie.getAllShots(pTenth: session.tenth))")
+                        Text("Serie \(index + 1): \(serie.getAllShotsFormatted(pTenth: session.tenth))")
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {

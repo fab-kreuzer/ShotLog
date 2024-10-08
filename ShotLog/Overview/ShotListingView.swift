@@ -21,7 +21,10 @@ struct ShotListingView: View {
                         
                         Text(formattedDate)
                             .font(.headline)
-                        Text("\(session.getAllShots(pTenth: session.tenth))R @ \(session.location)")
+                        Text(session.tenth ?
+                            String(format: "%.2f Ringe in %@", session.getAllShots(), session.location) :
+                            String(format: "%.0f Ringe in %@", session.getAllShots(), session.location)
+                        )
                         Text(String(session.weapon))
                     }
                 }
