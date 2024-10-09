@@ -41,6 +41,7 @@ struct OverviewView: View {
     func addShot() {
         let session = Session()
         session.location = locationManager.currentCity
+        session.serien = []
         modelContext.insert(session)
         path = [session]
     }
