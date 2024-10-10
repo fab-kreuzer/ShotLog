@@ -43,6 +43,7 @@ struct OverviewView: View {
         session.location = locationManager.currentCity
         session.serien = []
         modelContext.insert(session)
+        try? modelContext.save()
         path = [session]
     }
     

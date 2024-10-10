@@ -11,7 +11,8 @@ import Foundation
 @Model
 class Serie {
     var ringe: Double = 0
-    
+    @Relationship(deleteRule: .cascade) var session: [Session]? = [Session]()
+
     init(ringe: Double = 0) {
         self.ringe = ringe
     }

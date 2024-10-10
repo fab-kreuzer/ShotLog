@@ -47,6 +47,7 @@ struct ShotListingView: View {
         for index in indexSet {
             let shot = sessions[index]
             modelContext.delete(shot)
+            try? modelContext.save()
         }
     }
 }

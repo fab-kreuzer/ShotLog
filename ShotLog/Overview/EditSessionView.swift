@@ -26,7 +26,7 @@ struct EditSessionView: View {
             
             Section(AppConstants.SECTION_SERIE) {
                 // Break down ForEach loop into simpler parts
-                ForEach(0..<session.serien.count, id: \.self) { index in
+                ForEach(0..<(session.serien.count), id: \.self) { index in
                     let serie = session.serien[index]
                     HStack {
                         Text("Serie \(index + 1): \(serie.getAllShotsFormatted(pTenth: session.tenth))")

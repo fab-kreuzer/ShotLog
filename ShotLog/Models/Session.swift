@@ -10,14 +10,17 @@ import SwiftData
 
 @Model
 class Session: Hashable {
-    var date: Date
-    var location: String
-    var weapon: String
-    var serien: [Serie]
-    var tenth: Bool
+    var date: Date = Date()
+    var location: String = ""
+    var weapon: String = ""
+    var serien: [Serie] = []  // Make this relationship optional
+    var tenth: Bool = false
     
     var identifier = UUID()
     
+    @Relationship(inverse: \Session.parent) var children: [Session]?
+    @Relationship var parent: Session? // can make private if not using elsewhere
+
     init(date: Date = .now, dest: String = "Hader", weapon: String = AppConstants.AIR_RIFLE, serien: [Serie] = [Serie()], tenth: Bool = true) {
         self.date = date
         self.location = dest
